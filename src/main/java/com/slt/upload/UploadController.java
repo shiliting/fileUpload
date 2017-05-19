@@ -34,6 +34,8 @@ public class UploadController {
 //        Map<String,String[]> map=request.getParameterMap();
         InputStream is =null;
 
+
+
         staticResourceService.uploadResource(StaticResourceService.IMG,is);
         return "Hello World!";
     }
