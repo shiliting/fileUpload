@@ -5,7 +5,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 
 import java.io.IOException;
@@ -23,10 +28,12 @@ import static java.awt.SystemColor.text;
 public class UploadController {
     @Autowired
     StaticResourceService staticResourceService;
-    @RequestMapping("/")
-    public String home() throws Exception {
-        String text="abcd";
-        InputStream is = new ByteArrayInputStream(text.getBytes());
+    @RequestMapping(value = "/fileupload",method = RequestMethod.POST)
+    public String home(HttpServletRequest request) throws Exception {
+//        String text="abcd";
+//        Map<String,String[]> map=request.getParameterMap();
+        InputStream is =null;
+
         staticResourceService.uploadResource(StaticResourceService.IMG,is);
         return "Hello World!";
     }
